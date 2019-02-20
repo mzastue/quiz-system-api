@@ -1,7 +1,6 @@
 import express from 'express';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import './config/dotenv';
+import './config/db';
 
 const app = express();
 const host = process.env.HOST || 'localhost';
