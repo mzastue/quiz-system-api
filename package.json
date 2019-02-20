@@ -19,6 +19,7 @@
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "mongoose": "^5.4.14"
   }
