@@ -59,4 +59,29 @@ quiz.create = (req, res) => {
     });
 };
 
+quiz.show = async (req, res) => {
+  const quizId = req.params.id;
+  const quiz = await Quiz.findById(quizId)
+    .then(quiz => quiz)
+    .catch(err => null)
+  ;
+
+  if (quiz) {
+    res.json({
+      id: quiz._id,
+      name: quiz.name,
+      questions: quiz.questions.map(question => ({
+          text: question.text,
+          answers: question.answers.map(answer => ({
+            text: answer.text,
+            isCorrect: answer.isCorrect,
+          })),
+        })
+      ),
+    });
+  } else {
+    res.status(404).send('Not found');
+  }
+};
+
 export default quiz;
