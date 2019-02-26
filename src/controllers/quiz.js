@@ -27,6 +27,7 @@ const createQuestions = questions => {
     answers: question.answers.map(answer => ({
       text: answer.text,
       isCorrect: answer.isCorrect,
+      id: answer._id,
     })),
   }));
 };
@@ -48,12 +49,15 @@ quiz.create = (req, res) => {
         return new Question({ ...question, answers });
       });
       const quizName = req.body.quizName;
+      const config = req.body.config;
       const createEditLink = name => `${base64(base64((+new Date).toString())+name)}`;
 
       const quiz = new Quiz({
         name: quizName,
         editLink: createEditLink(quizName),
         questions,
+        questionTimeLimit: config.questionTimeLimitEnabled,
+        questionTimeLimitValue: config.questionTimeLimitValue,
       });
 
       quiz.save()
