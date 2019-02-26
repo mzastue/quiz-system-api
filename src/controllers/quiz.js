@@ -129,6 +129,8 @@ quiz.update = (req, res) => {
         quiz.questions.push(createdQuestion);
       });
       quiz.save();
+
+      res.status(200).end();
     })
     .catch(error => {
       if (error.errors) {
