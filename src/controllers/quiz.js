@@ -99,14 +99,14 @@ quiz.show = async (req, res) => {
 };
 
 quiz.edit = async (req, res) => {
-  const quiz = await Quiz.findOne({ editLink: req.params.id })
+  const quiz = await Quiz.findOne({ editLink: req.params.edit_link })
     .then(quiz => quiz)
     .catch(err => null)
   ;
 
   if (quiz) {
     res.json({
-      id: quiz._id,
+      editLink: req.params.edit_link, // editlink
       name: quiz.name,
       createdQuestions: quiz.questions.map(question => ({
         // answers are not accessible during edit
@@ -124,7 +124,7 @@ quiz.edit = async (req, res) => {
 quiz.update = (req, res) => {
   validateCreateRequest(req.body, ['newQuestions'])
     .then(async () => {
-      const quiz = await Quiz.findById(req.params.id);
+      const quiz = await Quiz.findOne({ editLink: req.params.edit_link });
       createQuestions(req.body.newQuestions).forEach(createdQuestion => {
         quiz.questions.push(createdQuestion);
       });
