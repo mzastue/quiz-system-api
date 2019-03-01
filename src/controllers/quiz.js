@@ -108,13 +108,14 @@ quiz.edit = async (req, res) => {
     res.json({
       editLink: req.params.edit_link, // editlink
       name: quiz.name,
-      createdQuestions: quiz.questions.map(question => ({
-        // answers are not accessible during edit
-        // because we dont want to know any other people question answers
-        // just the question text to see whats already created
-        text: question.text,
-        answersCount: question.answers.length,
-      })),
+      createdQuestions: [],
+      // createdQuestions: quiz.questions.map(question => ({
+      //   // answers are not accessible during edit
+      //   // because we dont want to know any other people question answers
+      //   // just the question text to see whats already created
+      //   text: question.text,
+      //   answersCount: question.answers.length,
+      // })),
     })
   } else {
     res.status(404).send('Not found');
