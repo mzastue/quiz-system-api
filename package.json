@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev:serve": "cross-env NODE_ENV=development nodemon ./src --exec babel-node",
-    "dev:webpack": "npx webpack"
+    "dev:webpack": "npx webpack",
+    "prod:build": "NODE_ENV=production npx webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
@@ -16,6 +17,7 @@
     "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {

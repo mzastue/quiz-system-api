@@ -1,0 +1,26 @@
+{
+  "name": "quiz-system-api",
+  "version": 2,
+  "env": {
+    "MONGO_PASSWORD": "@mongo-password",
+    "MONGO_USER": "@mongo-user",
+    "MONGO_HOST": "ds145555.mlab.com",
+    "MONGO_PORT": "45555",
+    "MONGO_DB": "quiz-system"
+  },
+  "builds": [
+    {
+      "src": "src/now.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "src/now.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
+  ]
+}
