@@ -92,6 +92,11 @@ quiz.show = async (req, res) => {
       id: quiz._id,
       name: quiz.name,
       questions: createQuestions(quiz.questions),
+      config: {
+        isQuestionTimeLimitEnabled: quiz.questionTimeLimit,
+        questionTimeLimit: quiz.questionTimeLimitValue,
+        questionsCount: quiz.questions.length,
+      }
     });
   } else {
     res.status(404).send('Not found');
